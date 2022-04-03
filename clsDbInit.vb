@@ -2,6 +2,9 @@
 
 Public Class clsDbInit
 
+    ' Reference: https://www.nuget.org/packages/System.Data.SQLite/
+    ' PM> Install-Package System.Data.SQLite -Version 1.0.115.5
+
     Private Const dbName As String = "MyDatabase.sqlite"
     Private Const connStr As String = "Data Source=" & dbName & "; Version=3;"
 
@@ -21,7 +24,10 @@ Public Class clsDbInit
         End Try
     End Function
 
+    Public Sub createTable()
+        openConn()
 
+    End Sub
 
     Private Sub openConn()
         conn = New SQLiteConnection(connStr)
