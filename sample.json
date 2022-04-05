@@ -1,0 +1,24 @@
+{
+	"datalist": [
+		{
+			"facebookid": "Peter Wong",
+			"firstname": "Peter",
+			"surname": "Wong",
+			"gender": "male",
+			"birthdate": "2000/12/31",
+			"location": "Hong Kong",
+			"phonenum": "12345678",
+			"email": "peter@hotmail.com"
+		},
+		{
+			"facebookid": "Susan Wong",
+			"firstname": "Peter",
+			"surname": "Wong",
+			"gender": "female",
+			"birthdate": "2000/12/31",
+			"location": "Hong Kong",
+			"phonenum": "12345678",
+			"email": "peter@hotmail.com"
+		}
+	]
+}

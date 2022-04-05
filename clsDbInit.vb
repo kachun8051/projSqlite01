@@ -7,9 +7,9 @@ Public Class clsDbInit
 
     Private Const dbName As String = "MyDatabase.sqlite"
     Private Const connStr As String = "Data Source=" & dbName & "; Version=3;"
+    Private lstSample As List(Of List(Of String))
 
     Private conn As SQLiteConnection
-
 
     Public Function createNewDb() As Boolean
         Dim dbpath As String = IO.Path.Combine(Application.StartupPath, dbName)
@@ -26,6 +26,23 @@ Public Class clsDbInit
 
     Public Sub createTable()
         openConn()
+        Dim sql As String = "Create Table If Not Exists tblFacebook(Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " &
+            "facebookid TEXT, firstname TEXT, surname TEXT, birthdate TEXT, location TEXT, phonenum TEXT, email TEXT);"
+        Dim cmd As SQLiteCommand = New SQLiteCommand(sql, conn)
+        cmd.ExecuteNonQuery()
+        closeConn()
+    End Sub
+
+    Public Sub fillTheList()
+        Dim lst01 As New List(Of String)
+        lst01.
+    End Sub
+
+    Public Sub fillTable()
+        openConn()
+        Dim cmd As SQLiteCommand = conn.CreateCommand()
+        cmd.CommandText = "INSERT INTO tblFacebook(Id, facebookid, firstname, surname, birthdate, location, phonenum, email) " &
+            "VALUES(@id, @fid, @fname, @sname, @bd, @loc, @pnum, @em)"
 
     End Sub
 
