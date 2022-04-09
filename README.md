@@ -1,11 +1,12 @@
-# Before inserting data into table, encrypted it:
+# (A) Before inserting data into table, encrypted it:
 ![Encrypted data](./images/Encrypted_Values_In_Table_1.png)
 ![Encrypted data](./images/Encrypted_Values_In_Table_2.png)
 
-# Before fetching data from table, decrypted it:
+
+# (B) Before fetching data from table, decrypted it:
 ![Decrypted data](./images/Decrypted_Values_From_Table.png)
 
-# When you download and build projSqlite01 in Visual Studio:
+# (C) When you download and build projSqlite01 in Visual Studio:
 
 Go to: Tools -> NuGet Package Manager -> Package Manager Settings
 
