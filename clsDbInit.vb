@@ -7,7 +7,8 @@ Public Class clsDbInit
 
     Private Const dbName As String = "MyDatabase.sqlite"
     Private Const connStr As String = "Data Source=" & dbName & "; Version=3;"
-    Private lstSample As List(Of List(Of String))
+    ' Private lstSample As List(Of List(Of String))
+    Private objParser As clsParser
 
     Private conn As SQLiteConnection
 
@@ -33,18 +34,40 @@ Public Class clsDbInit
         closeConn()
     End Sub
 
-    Public Sub fillTheList()
-        Dim lst01 As New List(Of String)
-        lst01.
-    End Sub
+    Private Function fillTheList() As Boolean
+        ' Dim lst01 As New List(Of String)
+        objParser = New clsParser
+        Return objParser.parseIt
 
-    Public Sub fillTable()
+    End Function
+
+    Public Function fillTable() As Boolean
+
+        If fillTheList() = False Then
+            Return False
+        End If
+
         openConn()
         Dim cmd As SQLiteCommand = conn.CreateCommand()
-        cmd.CommandText = "INSERT INTO tblFacebook(Id, facebookid, firstname, surname, birthdate, location, phonenum, email) " &
-            "VALUES(@id, @fid, @fname, @sname, @bd, @loc, @pnum, @em)"
+        cmd.CommandText = "INSERT INTO tblFacebook(facebookid, firstname, surname, birthdate, location, phonenum, email) " &
+            "VALUES(@fid, @fname, @sname, @bd, @loc, @pnum, @em)"
 
-    End Sub
+        For Each obj As clsRow In objParser.lstSample
+            ' cmd.Parameters.Add(New SQLiteParameter("@fid", obj.facebookid))
+            ' cmd.Parameters.Add(New SQLiteParameter("@fname", obj.firstname))
+            cmd.Parameters.AddWithValue("fid", obj.facebookid)
+            cmd.Parameters.AddWithValue("fname", obj.firstname)
+            cmd.Parameters.AddWithValue("sname", obj.surname)
+            cmd.Parameters.AddWithValue("bd", obj.birthdate)
+            cmd.Parameters.AddWithValue("loc", obj.location)
+            cmd.Parameters.AddWithValue("pnum", obj.phonenum)
+            cmd.Parameters.AddWithValue("em", obj.email)
+            cmd.ExecuteNonQuery()
+        Next
+        closeConn()
+
+
+    End Function
 
     Private Sub openConn()
         conn = New SQLiteConnection(connStr)
