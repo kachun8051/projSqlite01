@@ -2,6 +2,8 @@
 
 Go to: Tools -> NuGet Package Manager -> Package Manager Settings
 
-![General](./images/NuGet Package Manager Setting1.png)
+Make sure tick all checkboxes in Package restore.
+![General](./images/NuGet_Package_Manager_Setting_1.png)
 
-![Package Sources](./images/NuGet Package Manager Setting2.png)
+Make sure package sources includes http://nuget.org/api/v2/
+![Package Sources](./images/NuGet_Package_Manager_Setting_2.png)
