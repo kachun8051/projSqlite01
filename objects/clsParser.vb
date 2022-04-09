@@ -34,23 +34,4 @@ Public Class clsParser
 
 End Class
 
-Public Class clsData
-    Property datalist As List(Of clsRow)
-    Sub New()
-        datalist = New List(Of clsRow)
-    End Sub
-End Class
 
-Public Class clsRow
-    Property facebookid As String
-    Property firstname As String
-    Property surname As String
-    Property gender As String
-    Property birthdate As String
-    Property location As String
-    Property phonenum As String
-    Property email As String
-    Sub New()
-
-    End Sub
-End Class

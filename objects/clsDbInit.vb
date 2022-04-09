@@ -29,11 +29,15 @@ Public Class clsDbInit
     Public Function createTable() As Boolean
         Dim isCreated As Boolean = False
         openConn()
-        Dim sql As String = "Create Table If Not Exists tblFacebook(Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " &
+        Dim sql1 As String = "Create Table If Not Exists tblFacebook(Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " &
             "facebookid TEXT, firstname TEXT, surname TEXT, birthdate TEXT, location TEXT, phonenum TEXT, email TEXT);"
+        Dim sql2 As String = "Create Table If Not Exists tblSalt(Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, salt TEXT);"
         Dim cmd As SQLiteCommand
         Try
-            cmd = New SQLiteCommand(sql, conn)
+            cmd = New SQLiteCommand(conn)
+            cmd.CommandText = sql1
+            cmd.ExecuteNonQuery()
+            cmd.CommandText = sql2
             cmd.ExecuteNonQuery()
             isCreated = True
         Catch ex As Exception
@@ -76,21 +80,24 @@ Public Class clsDbInit
         End If
 
         openConn()
-        Dim cmd As SQLiteCommand = conn.CreateCommand()
-        cmd.CommandText = "INSERT INTO tblFacebook(facebookid, firstname, surname, birthdate, location, phonenum, email) " &
+        Dim cmd1 As SQLiteCommand = conn.CreateCommand()
+        Dim cmd2 As SQLiteCommand = conn.CreateCommand()
+        Dim sql1 As String = "INSERT INTO tblFacebook(facebookid, firstname, surname, birthdate, location, phonenum, email) " &
             "VALUES(@fid, @fname, @sname, @bd, @loc, @pnum, @em)"
-
+        Dim sql2 As String = "INSERT INTO tblSalt(salt) VALUES(@salt)"
+        cmd1.CommandText = sql1
+        cmd2.CommandText = sql2
         For Each obj As clsRow In objParser.lstSample
-            ' cmd.Parameters.Add(New SQLiteParameter("@fid", obj.facebookid))
-            ' cmd.Parameters.Add(New SQLiteParameter("@fname", obj.firstname))
-            cmd.Parameters.AddWithValue("fid", obj.facebookid)
-            cmd.Parameters.AddWithValue("fname", obj.firstname)
-            cmd.Parameters.AddWithValue("sname", obj.surname)
-            cmd.Parameters.AddWithValue("bd", obj.birthdate)
-            cmd.Parameters.AddWithValue("loc", obj.location)
-            cmd.Parameters.AddWithValue("pnum", obj.phonenum)
-            cmd.Parameters.AddWithValue("em", obj.email)
-            cmd.ExecuteNonQuery()
+            cmd1.Parameters.AddWithValue("fid", obj.getEncrypted("facebookid"))
+            cmd1.Parameters.AddWithValue("fname", obj.getEncrypted("firstname"))
+            cmd1.Parameters.AddWithValue("sname", obj.getEncrypted("surname"))
+            cmd1.Parameters.AddWithValue("bd", obj.getEncrypted("birthdate"))
+            cmd1.Parameters.AddWithValue("loc", obj.getEncrypted("location"))
+            cmd1.Parameters.AddWithValue("pnum", obj.getEncrypted("phonenum"))
+            cmd1.Parameters.AddWithValue("em", obj.getEncrypted("email"))
+            cmd1.ExecuteNonQuery()
+            cmd2.Parameters.AddWithValue("salt", obj.salt)
+            cmd2.ExecuteNonQuery()
         Next
         closeConn()
         Return True

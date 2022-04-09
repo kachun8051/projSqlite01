@@ -1,12 +1,32 @@
 ﻿Imports System.Data.SQLite
 Public Class Form1
+    ' Timer used to display the result after the form i.e. ui loaded
+    Private WithEvents myTimer As New System.Windows.Forms.Timer()
+    Private isDbInited As Boolean
 
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Me.Text = "Database with encrypted values"
+        Label1.Text = "Plain Text value can be Encrypted when saved into table." & vbCrLf &
+            "Encrypted value can be Decrypted when fetched from table."
+        Label2.Text = "Demo how to decrypted value from table"
+        Button1.Text = "Refresh"
+        Button2.Text = "Fetch Table Directly"
+        Button3.Text = "Fetch Table With Decrypting"
+        ' Sets the timer interval to 0.2 seconds.
+        myTimer.Interval = 200
+        isDbInited = initTheDb()
+        myTimer.Start()
 
+    End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-        initTheDb()
-
+    ' This is the method to run when the timer is raised.
+    Private Sub TimerEventProcessor(myObject As Object, ByVal myEventArgs As EventArgs) Handles myTimer.Tick
+        myTimer.Stop()
+        If Me.isDbInited Then
+            MsgBox("Successfully init the database")
+        Else
+            MsgBox("Fail to init the database")
+        End If
     End Sub
 
     Private Function initTheDb() As Boolean
@@ -29,4 +49,19 @@ Public Class Form1
         Return True
     End Function
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        initTheDb()
+        Button2.PerformClick()
+    End Sub
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        'Me.DataGridView1.Rows.Clear()
+        Dim objDgv As New clsDatagridview
+        objDgv.fillTheDgv(Me.DataGridView1)
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        'Me.DataGridView1.Rows.Clear()
+        Dim objDgv As New clsDatagridview
+        objDgv.fillTheDgv2(Me.DataGridView1)
+    End Sub
 End Class

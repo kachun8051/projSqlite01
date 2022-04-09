@@ -8,17 +8,52 @@
 			"birthdate": "2000/12/31",
 			"location": "Hong Kong",
 			"phonenum": "12345678",
-			"email": "peter@hotmail.com"
+			"email": "peter@hotmail.com",
+			"salt": "RwS5a2oXZfiwCQgp"
 		},
 		{
-			"facebookid": "Susan Wong",
-			"firstname": "Peter",
-			"surname": "Wong",
+			"facebookid": "Susan Chan",
+			"firstname": "Susan",
+			"surname": "Chan",
 			"gender": "female",
-			"birthdate": "2000/12/31",
-			"location": "Hong Kong",
-			"phonenum": "12345678",
-			"email": "peter@hotmail.com"
+			"birthdate": "2010/01/31",
+			"location": "ShangHai",
+			"phonenum": "87654321",
+			"email": "susan@abc.com",
+			"salt": "C80587L3z4FpaDN5"
+		},
+		{
+			"facebookid": "Sam Hui",
+			"firstname": "Sam",
+			"surname": "Hui",
+			"gender": "male",
+			"birthdate": "1985/05/15",
+			"location": "BeiJing",
+			"phonenum": "45457878",
+			"email": "sam@xyz.com",
+			"salt": "Aa8FFIFwxZYVcCJI"
+		},
+		{
+			"facebookid": "John Tai",
+			"firstname": "John",
+			"surname": "Tai",
+			"gender": "male",
+			"birthdate": "1969/02/17",
+			"location": "XiMen",
+			"phonenum": "15427896",
+			"email": "john@rst.com",
+			"salt": "2iprHLZPHxiNLWVs"
+		},
+		{
+			"facebookid": "Rebecca Lui",
+			"firstname": "Rebecca",
+			"surname": "Lui",
+			"gender": "female",
+			"birthdate": "1962/01/20",
+			"location": "GuangZhou",
+			"phonenum": "78951234",
+			"email": "rebecca@yahoo.com",
+			"salt": "EzDC4rmfocWxZ0KQ"
 		}
 	]
 }

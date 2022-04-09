@@ -95,8 +95,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsDbInit.vb" />
-    <Compile Include="clsParser.vb" />
+    <Compile Include="objects\clsDatagridview.vb" />
+    <Compile Include="objects\clsDbInit.vb" />
+    <Compile Include="objects\clsParser.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +120,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="objects\clsRow.vb" />
+    <Compile Include="objects\Simple3Des.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
