@@ -4,11 +4,20 @@ Public Class Form1
     Private WithEvents myTimer As New System.Windows.Forms.Timer()
     Private isDbInited As Boolean
 
+    Public Sub New()
+        ' This call is required by the designer.
+        InitializeComponent()
+        Me.StartPosition = FormStartPosition.CenterScreen
+        ' Add any initialization after the InitializeComponent() call.
+    End Sub
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles Me.Load
         Me.Text = "Database with encrypted values"
         Label1.Text = "Plain Text value can be Encrypted when saved into table." & vbCrLf &
             "Encrypted value can be Decrypted when fetched from table."
-        Label2.Text = "Demo how to decrypted value from table"
+        Label2.Text = "Demo how to decrypted value from table - using VB.net + Sqlite"
+
+        'ToolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right
         Button1.Text = "Refresh"
         Button2.Text = "Fetch Table Directly"
         Button3.Text = "Fetch Table With Decrypting"
@@ -23,10 +32,13 @@ Public Class Form1
     Private Sub TimerEventProcessor(myObject As Object, ByVal myEventArgs As EventArgs) Handles myTimer.Tick
         myTimer.Stop()
         If Me.isDbInited Then
-            MsgBox("Successfully init the database")
+            Button3.PerformClick()
+            ToolStripStatusLabel1.Text = "Successfully init the database"
         Else
+            ToolStripStatusLabel1.Text = "Fail to init the database"
             MsgBox("Fail to init the database")
         End If
+        ToolStripStatusLabel2.Text = "written by Wong Ka Chun on 2022/04/10"
     End Sub
 
     Private Function initTheDb() As Boolean
@@ -51,7 +63,7 @@ Public Class Form1
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         initTheDb()
-        Button2.PerformClick()
+        Button3.PerformClick()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         'Me.DataGridView1.Rows.Clear()
@@ -64,4 +76,5 @@ Public Class Form1
         Dim objDgv As New clsDatagridview
         objDgv.fillTheDgv2(Me.DataGridView1)
     End Sub
+
 End Class

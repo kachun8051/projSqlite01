@@ -98,44 +98,6 @@ Public Class clsDatagridview
         Return isFilled
     End Function
 
-    'Public Function fillTheDgv2(ByRef dgv As DataGridView) As Boolean
-    '    Dim isFilled As Boolean = False
-    '    openConn()
-    '    Dim sql As String = "Select facebookid, firstname, surname, birthdate, location, phonenum, email From tblfacebook"
-    '    Try
-    '        ' Create a new oledb dataadapter
-    '        Dim da As SQLiteDataAdapter = New SQLiteDataAdapter(sql, conn)
-    '        ' Create a new dataset
-    '        Dim ds As New DataSet()
-    '        ' Fill the datset
-    '        da.Fill(ds)
-    '        ' Clone the datatable to the new one and clear its content 
-    '        ' Only need its table structure
-    '        Dim dt2 As DataTable = ds.Tables(0).Clone
-    '        dt2.Clear()
-    '        ' Edit each cell
-    '        For Each row As DataRow In ds.Tables(0).Rows
-    '            Dim dr2 As DataRow = dt2.NewRow
-    '            For Each col As DataColumn In row.Table.Columns
-    '                dr2.Item(col.ColumnName) = row.Item(col.ColumnName).ToString() & " 123"
-    '            Next
-    '            dt2.Rows.Add(dr2)
-    '        Next
-    '        'attach dataset to the datagrid
-    '        dgv.DataSource = dt2
-
-    '        ds = Nothing
-    '        da = Nothing
-    '        isFilled = True
-    '    Catch ex As Exception
-
-    '        Diagnostics.Debug.WriteLine("clsDatagridview.fillTheDgv2: " & ex.Message)
-    '        isFilled = False
-    '    End Try
-    '    closeConn()
-    '    Return isFilled
-    'End Function
-
     Private Sub openConn()
         conn = New SQLiteConnection(connStr)
         conn.Open()

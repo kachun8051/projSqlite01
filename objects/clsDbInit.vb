@@ -99,6 +99,8 @@ Public Class clsDbInit
             cmd2.Parameters.AddWithValue("salt", obj.salt)
             cmd2.ExecuteNonQuery()
         Next
+        cmd1.Dispose()
+        cmd2.Dispose()
         closeConn()
         Return True
 
